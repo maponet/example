@@ -2,19 +2,14 @@ package interno
 
 import "fmt"
 
-type database struct {
+type Storer interface {
+    ToStoreFormat() String
 }
 
-func (db database) Save() {
-    fmt.Printf("\t\tinterno: execute interno.Save\n")
+func Store(object Storer) {
+    fmt.Printf("\t\tinterno: execute interno.Store on object: %v\n", object)
+    actualDbSaving(object.ToStoreFormat())
 }
 
-type Saver interface {
-    Save()
-}
-
-func New() Saver {
-    fmt.Printf("\t\tinterno: execute interno.New\n")
-    var s database
-    return s
-}
+func actualDbSaving(objectInStoreFormat String) {
+	fmt.Printf("\t\tinterno: execute interno.actualDbSaving with string: %s\n", objectInStoreFormat)

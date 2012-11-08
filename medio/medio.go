@@ -8,6 +8,7 @@ type Extender interface {
     SetAttribute(name, value string)
     SetPath(p string)
     Save()
+    interno.Storer
 }
 
 type object struct {
@@ -33,11 +34,13 @@ func (o object) SetPath(path string) {
 func (o object) Save() {
     fmt.Printf("\tmedio: execute Save\n")
     
-    fmt.Printf("\tmedio: call interno.New\n")
-    db := interno.New()
-    
-    fmt.Printf("\tmedio: call db.Save\n")
-    db.Save()
+    fmt.Printf("\tmedio: call interno.Store\n")
+    interno.Store(o)
+}
+
+func (o object) ToStoreFormat() String {
+    fmt.Printf("\tmedio: execute ToStoreFormat\n")
+    return "Hello!"
 }
 
 func NewExtender() Extender {
