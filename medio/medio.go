@@ -8,7 +8,7 @@ type Extender interface {
     SetAttribute(name, value string)
     SetPath(p string)
     Save()
-    interno.Storer
+    //interno.Storer
 }
 
 type object struct {
