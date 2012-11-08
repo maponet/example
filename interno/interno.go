@@ -3,7 +3,7 @@ package interno
 import "fmt"
 
 type Storer interface {
-    ToStoreFormat() String
+    ToStoreFormat() string
 }
 
 func Store(object Storer) {
@@ -11,5 +11,6 @@ func Store(object Storer) {
     actualDbSaving(object.ToStoreFormat())
 }
 
-func actualDbSaving(objectInStoreFormat String) {
+func actualDbSaving(objectInStoreFormat string) {
 	fmt.Printf("\t\tinterno: execute interno.actualDbSaving with string: %s\n", objectInStoreFormat)
+}

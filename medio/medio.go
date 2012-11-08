@@ -38,7 +38,7 @@ func (o object) Save() {
     interno.Store(o)
 }
 
-func (o object) ToStoreFormat() String {
+func (o object) ToStoreFormat() string {
     fmt.Printf("\tmedio: execute ToStoreFormat\n")
     return "Hello!"
 }
