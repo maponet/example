@@ -8,7 +8,7 @@ type Extender interface {
     SetAttribute(name, value string)
     SetPath(p string)
     Save()
-    interno.Storer
+    //interno.Storer
 }
 
 type object struct {
@@ -69,6 +69,11 @@ func (a advancedObject) Save() {
 
     fmt.Printf("\tmedio: call interno.Store\n")
     interno.Store(a)
+}
+
+func (a advancedObject) ToStoreFormat() string {
+    fmt.Printf("\tmedio: execute ToStoreFormat\n")
+    return "advancedObject formated"
 }
 
 // versione modificata
