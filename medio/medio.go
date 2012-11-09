@@ -8,7 +8,7 @@ type Extender interface {
     SetAttribute(name, value string)
     SetPath(p string)
     Save()
-    //interno.Storer
+    interno.Storer
 }
 
 type object struct {
@@ -43,9 +43,40 @@ func (o object) ToStoreFormat() string {
     return "Hello!"
 }
 
+// Un altro extender
+type advancedObject struct {
+    path string
+    attributes map[string]string
+}
+
+func (a advancedObject) AddAttribute(name string) {
+    a.attributes[name] = ""
+    fmt.Printf("\tmedio: execute AddAttribute\n")
+}
+
+func (a advancedObject) SetAttribute(name, value string) {
+    a.attributes[name] = value
+    fmt.Printf("\tmedio: execute SetAttribute\n")
+}
+
+func (a advancedObject) SetPath(path string) {
+    a.path = fmt.Sprintf("/prefix/%s", path)
+    fmt.Printf("\tmedio: execute SetPath\n")
+}
+
+func (a advancedObject) Save() {
+    fmt.Printf("\tmedio: execute Save\n")
+
+    fmt.Printf("\tmedio: call interno.Store\n")
+    interno.Store(a)
+}
+
+// versione modificata
 func NewExtender() Extender {
     fmt.Printf("\tmedio: execute NewExtender\n")
-    var o object
+    var o advancedObject
     o.attributes = make(map[string]string, 0)
     return o
 }
+
+
